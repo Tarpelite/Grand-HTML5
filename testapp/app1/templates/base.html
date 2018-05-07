@@ -2,6 +2,7 @@
 <html lang="zh-cn">
 <head>
     <meta charset="UTF-8">
+
     <!-- 新 Bootstrap4 核心 CSS 文件 -->
 <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
 
@@ -108,29 +109,43 @@
 		<div class="col-md-4">
 			<ul class="nav flex-column">
 				<li class="nav-item">
-					<a class="nav-link active" href="#">Home</a>
+					<a class="nav-link active collapse" href="#choice1">Home</a>
 				</li>
+                <a id="choice1" class="panel-collapse" href="choice1">choice1</a>
 				<li class="nav-item">
 					<a class="nav-link" href="#">Profile</a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link disabled" href="#">Messages</a>
 				</li>
-				<li class="nav-item dropdown ml-md-auto">
-					 <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown">Dropdown link</a>
-					<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-						 <a class="dropdown-item" href="#">Action</a> <a class="dropdown-item" href="#">Another action</a> <a class="dropdown-item" href="#">Something else here</a>
-						<div class="dropdown-divider">
-						</div> <a class="dropdown-item" href="#">Separated link</a>
-					</div>
-				</li>
 			</ul>
 			<ul class="nav flex-column">
 				<li class="nav-item">
 					<a class="nav-link active" href="#">Home</a>
+                    <a href="#demo" data-toggle="collapse">折叠</a>
+                    <div id="demo" class="collapse in">demo</div>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="#">Profile</a>
+                    <div id="accordion">
+                        <div class="card">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#demo1">
+                                    进阶折叠
+                                </a>
+                            <div id="demo1" class="collapse show">
+                                demo1
+                            </div>
+                                <a data-toggle="collapse" data-parent="#accordion" href="#demo2">
+                                    super collapse
+                                </a>
+                            </div>
+                            <div id="demo2" class="collapse">
+                                <div class="card-block">
+                                    demo2
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link disabled" href="#">Messages</a>
@@ -158,14 +173,6 @@
 				</li>
 				<li class="nav-item">
 					<a class="nav-link disabled" href="#">Messages</a>
-				</li>
-				<li class="nav-item dropdown ml-md-auto">
-					 <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown">Dropdown link</a>
-					<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-						 <a class="dropdown-item" href="#">Action</a> <a class="dropdown-item" href="#">Another action</a> <a class="dropdown-item" href="#">Something else here</a>
-						<div class="dropdown-divider">
-						</div> <a class="dropdown-item" href="#">Separated link</a>
-					</div>
 				</li>
 			</ul>
 		</div>
