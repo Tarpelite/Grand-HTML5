@@ -18,6 +18,7 @@ class Category(models.Model):
     name = models.CharField(max_length=40, verbose_name=u'名称')
     parent = models.ForeignKey('self', default=None, blank=True, null=True,
                                verbose_name=u'上级分类', on_delete=models.CASCADE)
+    href = models.CharField(max_length=200, verbose_name=u'链接', blank=True,null=True)
     rank = models.IntegerField(default=0, verbose_name=u'排序')
     status = models.IntegerField(default=0, choices=STATUS.items(), verbose_name=u'状态')
     create_time = models.DateTimeField(u'创建时间', auto_now_add=True)
@@ -51,7 +52,7 @@ class Article(models.Model):
     pub_time = models.DateTimeField(default=False, verbose_name=u'发布时间')
     create_time = models.DateTimeField(u'创建时间', auto_now_add=True)
     update_time = models.DateTimeField(u'更新时间', auto_now=True)
-
+    url = models.CharField(max_length=200, verbose_name=u'链接', blank=True)
     def get_tags(self):
         tags_list = self.tags.split(',')
         while '' in tags_list:
