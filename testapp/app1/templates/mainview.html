@@ -8,54 +8,31 @@
             <cite>首页</cite>
        </a>
         </li>
-        <li data-name="component" class="layui-nav-item layui-nav-itemed">
-            <a href="#" lay-tips="教学队伍" lay-direction="2">
-                <i class="layui-icon layui-icon-component"></i>
-                    <cite>教学队伍</cite>
-                <span class="layui-nav-more"></span>
-            </a>
-            <dl class="layui-nav-child">
-                <dd data-name="button">
-                    <a href="#">主讲教师</a>
-                </dd>
-            </dl>
-        </li>
-    </ul>
-
-
     <ul class="layui-nav layui-nav-tree">
-
-    </ul>
-
-
-
-    <ul id="nav" >
-    {% for bar in Bars %}
-        {% for item in bar %}
-            {% if forloop.first %}
-            <br/>
-            <a data-toggle="collapse" data-parent="#accordion"  href="#{{ item }}">
-                {{ item }}
-            </a>
-            {% endif %}
+        {% for bar in Bars %}
+            <li data-name="component" class="layui-nav-item layui-nav-itemed">
+                <a href="javascript:;" laytips = "{{ bar.0 }}" lay-direction="2">
+                    <i class="layui-icon layui-icon-component"></i>
+                        <cite>{{ bar.0 }}</cite>
+                    <span class="layui-nav-more"></span>
+                </a>
+                    {% for a1 in bar %}
+                        {% if not forloop.first %}
+                            <dl class="layui-nav-child">
+                                <dd data-name="button">
+                                    <a href="/mainview/{{ a1 }}" target="#">{{ a1 }}</a>
+                                </dd>
+                            </dl>
+                        {%  endif %}
+                    {% endfor %}
+            </li>
         {% endfor %}
-    {% endfor %}
 
 
-    {% for bar in Bars %}
-        <div id = "{{ bar.0 }}" class="collapse">
-            {% for item in bar %}
-                {% if not forloop.first %}
-                    <li>
-                        <a  href="/mainview/{{ item }}">
-                            {{ item }}
-                        </a>
-                    </li>
-                {% endif %}
-            {% endfor %}
-        </div>
-            {% endfor %}
+
     </ul>
+    </ul>
+
 {% endblock %}
 
 

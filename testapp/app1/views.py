@@ -34,21 +34,31 @@ def get_catogary():
             for i in article_tmp:
                 directory_dict[dir.name].append(i.name)
 
+
 def mainview(request, param1):
     article_list = Article.objects.filter(title=param1)
     article = article_list[0]
-    article_path = str(article.category)+">> "+article.title
-    article_body = markdown.markdown(article.content,
-                                     extensions=[
-                                         'markdown.extensions.extra',
-                                         'markdown.extensions.codehilite',
-                                         'markdown.extensions.toc',
-                                     ])
+    article_path = "当前位置:"+str(article.category)+">>"+article.title
 
     context = {'param1': param1,
-               'content': mark_safe(article_body),
                'path': article_path,
                }
+    if article.text_type == 'md':
+        '''正文文本是markdown语法'''
+        context['type'] = 'md'
+        article_body = mark_safe(markdown.markdown(article.content,
+                                        extensions=[
+                                            'markdown.extensions.extra',
+                                            'markdown.extensions.codehilite',
+                                            'markdown.extensions.toc',
+                                        ]))
+    else:
+        '''正文文本是h5语法'''
+        context['type'] = 'h5'
+        article_body = article.content
+
+
+    context['content'] = article_body
     catogary_list = Category.objects.all()
     directory = []
     Bars = []

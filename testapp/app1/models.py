@@ -43,6 +43,10 @@ class Category(models.Model):
 
 
 class Article(models.Model):
+    text_type_choices = {
+        ('h5', 'HTML5'),
+        ('md', 'markdown'),
+    }
     author = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name=u'作者', on_delete=models.CASCADE)
     category = models.ForeignKey(Category, verbose_name=u'分类', on_delete=models.CASCADE)
     title = models.CharField(max_length=100, verbose_name=u'标题')
@@ -59,6 +63,8 @@ class Article(models.Model):
     create_time = models.DateTimeField(u'创建时间', auto_now_add=True)
     update_time = models.DateTimeField(u'更新时间', auto_now=True)
     url = models.CharField(max_length=200, verbose_name=u'链接', blank=True)
+    text_type = models.CharField(max_length=10, verbose_name=u'正文文本类型', choices=text_type_choices, default='md')
+
     def get_tags(self):
         tags_list = self.tags.split(',')
         while '' in tags_list:
