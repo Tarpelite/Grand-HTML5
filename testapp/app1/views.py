@@ -2,8 +2,15 @@ from django.shortcuts import render
 from django.utils.safestring import mark_safe
 from django.http import HttpResponse
 import markdown
-from .models import Article,Category
+from .models import Article, Category
 # Create your views here.
+
+
+class Bar:
+    name = ""
+    subBar = []
+    def __init__(self, name):
+        self.name = name
 
 
 def base(request):
@@ -44,22 +51,29 @@ def mainview(request, param1):
                }
     catogary_list = Category.objects.all()
     directory = []
-    #directory_dict = {}
-
+    Bars = []
     for q in catogary_list:
         if not q.parent:
             directory.append(q)
-    directory_name = []
+    #directory_name = []
 
+    cnt = 0
     for dir in directory:
-        directory_name.append(dir.name)
-        context[dir.name] = []
+        tmp = []
+        tmp.append(dir.name)
+        #directory_name.append(dir.name)
+        #context[dir.name] = []
 
         article_tmp = Article.objects.filter(category=dir)
         if len(article_tmp) > 0:
             for i in article_tmp:
-                context[dir.name].append(i.title)
+                #Bars[cnt].subBar.append(i.title)
+                tmp.append(i.title)
+        Bars.append(tmp)
 
-    print(directory_name)
-    context['directory_name'] = directory_name
+
+    #print(directory_name)
+    print(Bars)
+    #context['directory_name'] = directory_name
+    context['Bars'] = Bars
     return render(request, 'mainview.html', context)

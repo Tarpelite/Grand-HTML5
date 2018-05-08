@@ -1,16 +1,36 @@
 {% extends 'base.html' %}
 {% block left_nav %}
-    <ul class="nav flex-column">
-    {% for item in directory_name %}
-        <li class="nav-item">
-            <a class="nav-link active collapse" href="#{{ item }}">{{ item }}</a>
-        </li>
-        {% for art in item %}
-            <a id="{{ item }}" class="panel-collapse" href="{{ art }}">{{ art }}</a>
+    <ul id="nav">
+        <div id = "accordion">
+    {% for bar in Bars %}
+        {% for item in bar %}
+            {% if forloop.first %}
+            <br/>
+            <a data-toggle="collapse" data-parent="#accordion"  href="#{{ item }}">
+                {{ item }}
+            </a>
+            {% endif %}
         {% endfor %}
     {% endfor %}
+
+
+    {% for bar in Bars %}
+        <div id = "{{ bar.0 }}" class="collapse">
+            {% for item in bar %}
+                {% if not forloop.first %}
+                    <li>
+                        <a  href="/mainview/{{ item }}">
+                            {{ item }}
+                        </a>
+                    </li>
+                {% endif %}
+            {% endfor %}
+        </div>
+            {% endfor %}
     </ul>
 {% endblock %}
+
+
 {% block content %}
 <nav>
     <ol class="breadcrumb">
