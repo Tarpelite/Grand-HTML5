@@ -30,7 +30,7 @@ def get_catogary():
         directory_name.append(dir.name)
         directory_dict[dir.name] = []
         article_tmp = Article.objects.filter(parent=dir)
-        if len(article_tmp)>0:
+        if len(article_tmp) > 0:
             for i in article_tmp:
                 directory_dict[dir.name].append(i.name)
 
@@ -45,7 +45,6 @@ def mainview(request, param1):
                }
     if article.text_type == 'md':
         '''正文文本是markdown语法'''
-        context['type'] = 'md'
         article_body = mark_safe(markdown.markdown(article.content,
                                         extensions=[
                                             'markdown.extensions.extra',
@@ -54,7 +53,7 @@ def mainview(request, param1):
                                         ]))
     else:
         '''正文文本是h5语法'''
-        context['type'] = 'h5'
+        context['h5'] = 'Yes'
         article_body = article.content
 
 

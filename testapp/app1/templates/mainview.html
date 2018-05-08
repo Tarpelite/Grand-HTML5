@@ -43,5 +43,11 @@
     </ol>
 </nav>
 <h1>{{  param1  }}</h1>
-{{ content }}
+{% if h5 %}
+    {% autoescape off %}
+        {{ content }}
+    {% endautoescape %}
+{% else %}
+    {{ content }}
+{% endif %}
 {% endblock %}
