@@ -1,7 +1,35 @@
 {% extends 'base.html' %}
 {% block left_nav %}
-    <ul id="nav">
-        <div id = "accordion">
+    <ul class="layui-nav layui-nav-tree">
+        <li data-name="home" class="layui-nav-item">
+       <a href="/mainview/test_art" target="main" lay-tips="首页" lay-direction="2" >
+
+            <i class="layui-icon layui-icon-home"></i>
+            <cite>首页</cite>
+       </a>
+        </li>
+        <li data-name="component" class="layui-nav-item layui-nav-itemed">
+            <a href="#" lay-tips="教学队伍" lay-direction="2">
+                <i class="layui-icon layui-icon-component"></i>
+                    <cite>教学队伍</cite>
+                <span class="layui-nav-more"></span>
+            </a>
+            <dl class="layui-nav-child">
+                <dd data-name="button">
+                    <a href="#">主讲教师</a>
+                </dd>
+            </dl>
+        </li>
+    </ul>
+
+
+    <ul class="layui-nav layui-nav-tree">
+
+    </ul>
+
+
+
+    <ul id="nav" >
     {% for bar in Bars %}
         {% for item in bar %}
             {% if forloop.first %}

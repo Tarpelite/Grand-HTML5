@@ -37,7 +37,7 @@ def get_catogary():
 def mainview(request, param1):
     article_list = Article.objects.filter(title=param1)
     article = article_list[0]
-    article_path = str(article.category)+" -->  "+article.title
+    article_path = str(article.category)+">> "+article.title
     article_body = markdown.markdown(article.content,
                                      extensions=[
                                          'markdown.extensions.extra',

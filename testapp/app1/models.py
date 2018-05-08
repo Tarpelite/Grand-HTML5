@@ -29,7 +29,7 @@ class Category(models.Model):
 
     def __unicode__(self):
         if self.parent:
-            return '%s-->%s' % (self.parent, self.name)
+            return '%s>>%s' % (self.parent, self.name)
         else:
             return '%s' % (self.name)
 
