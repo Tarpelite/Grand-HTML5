@@ -1,14 +1,6 @@
 {% extends 'base.html' %}
 {% block left_nav %}
     <ul class="layui-nav layui-nav-tree">
-        <li data-name="home" class="layui-nav-item">
-       <a href="/mainview/test_art" target="main" lay-tips="首页" lay-direction="2" >
-
-            <i class="layui-icon layui-icon-home"></i>
-            <cite>首页</cite>
-       </a>
-        </li>
-    <ul class="layui-nav layui-nav-tree">
         {% for bar in Bars %}
             <li data-name="component" class="layui-nav-item layui-nav-itemed">
                 <a href="javascript:;" laytips = "{{ bar.0 }}" lay-direction="2">
@@ -28,9 +20,6 @@
             </li>
         {% endfor %}
 
-
-
-    </ul>
     </ul>
 
 {% endblock %}

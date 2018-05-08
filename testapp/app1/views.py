@@ -17,7 +17,7 @@ def base(request):
     return render(request, 'base.html')
 
 def get_catogary():
-    catogary_list = Category.objects.all()
+    catogary_list = Category.objects.all().order_by('rank')
     directory = []
     directory_dict = {}
 
