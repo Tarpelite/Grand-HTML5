@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.utils.safestring import mark_safe
-from django.http import HttpResponse
+from django.http import HttpResponseNotFound, Http404
 import markdown
 from .models import Article, Category
 # Create your views here.
@@ -35,8 +35,10 @@ def get_catogary():
                 directory_dict[dir.name].append(i.name)
 
 
-def mainview(request, param1):
+def mainview(request, param1='课程概况'):
     article_list = Article.objects.filter(title=param1)
+    if len(article_list) == 0:
+        return HttpResponseNotFound("<h1>Page not found</h1></br><a href='课程概况'>点击这里返回主页")
     article = article_list[0]
     article_path = "当前位置:"+str(article.category)+">>"+article.title
 
@@ -82,7 +84,7 @@ def mainview(request, param1):
 
 
     #print(directory_name)
-    print(Bars)
+    #print(Bars)
     #context['directory_name'] = directory_name
     context['Bars'] = Bars
     return render(request, 'mainview.html', context)

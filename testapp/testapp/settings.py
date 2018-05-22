@@ -25,7 +25,10 @@ SECRET_KEY = '_%)jah6=)tf0rms=a)$0w5llc5w$k+@%-&o^xy&(b10_xa+!k^'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'www.buaatech.top',
+    '127.0.0.1',
+]
 
 
 # Application definition
@@ -39,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'bootstrap3',
     'app1',
+    'logReg'
 ]
 
 MIDDLEWARE = [
