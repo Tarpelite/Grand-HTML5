@@ -1,0 +1,59 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>个人中心</title>
+    <link rel="stylesheet" href="{% static 'layui/css/layui.css' %}">
+</head>
+<body>
+
+<table id="normal-problem-panel-table" lay-filter="data-table"></table>
+
+<script src="{% static 'layui/layui.js' %}"></script>
+<script>
+layui.use(['table','upload','jquery','layer'], function ($,upload,table) {
+        var table = layui.table;
+
+
+
+        //渲染表格
+        var HomeworkTable = table.render({//渲染table
+            method: 'post',//数据传输方式为post
+            height: 'full-20',//高度为屏幕高度-20
+            cellMinWidth: 80,//单元格最小宽度为80
+            page: false,
+            elem: '#normal-problem-panel-table',//设置容器
+            url: '{% url 'get_homeworks' %}',//数据获取url
+            cols: [[//设置列标签、标题、宽度、是否排序等
+                {field: 'id', title: '作业编号', width: 80, sort: true},
+                {field: 'des', title: '作业简介',},
+                {field: 'status', title: '作业状态'},
+                {field: 'duedate', title: '截止时间',},
+                {field: 'upload', width: 100, title:'上传作业',templet: function () {
+                        return '<button class="layui-btn layui-btn-xs upload_btn" ><i class="layui-icon">&#xe67c;</i>上传作业</button>'
+                    }},
+            ]],
+            done: function (res,curr,count) {
+                var tableId = this.id;
+                var tableElem = this.elem;
+                var tableViewElem = tableElem.next();
+                upload.render({
+                    elem: tableViewElem.find('.upload_btn') //绑定元素
+                    ,url: '{% url 'upload_file' %}' //上传接口
+                    ,accept:'file'
+                    ,done: function(res){
+                        console.log(res);
+                        if(res.status===1)
+                            var layer=layui.layer;
+                            layer.msg(
+                                '上传成功'
+                            );
+                    }
+                })
+            }
+        });
+})
+</script>
+</body>
+</html>
