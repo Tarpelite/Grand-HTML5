@@ -35,7 +35,7 @@ def get_catogary():
                 directory_dict[dir.name].append(i.name)
 
 
-def mainview(request, param1='课程概况'):
+def mainview(request, param1='课程介绍'):
     article_list = Article.objects.filter(title=param1)
     if len(article_list) == 0:
         return HttpResponseNotFound("<h1>Page not found</h1></br><a href='课程概况'>点击这里返回主页")

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>注册</title>
+</head>
+<body>
+<form action="" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="注册" />
+</form>
+{% if messages %}
+    {% for message in messages %}
+    <p{% if message.tags %} class="{{ message.tags }}" {% endif %} style="padding: 10px">{{ message }}</p>
+        {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}<a href="{% url 'login' %}">前往登陆</a> {% endif %}
+    {% endfor %}
+{% endif %}
+</body>
+</html>
