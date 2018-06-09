@@ -10,6 +10,7 @@
 <table id="dataTable" lay-filter="data-table"></table>
  {% csrf_token %}
 <div><button data-method="set" class="layui-btn layui-btn-warm" id="btn" data-type="auto">发布作业</button></div>
+<a href="{% url 'logout' %}">退出登录</a>
 <script src="{% static 'layui/layui.js' %}"></script>
 <script>
     layui.use('table',function () {

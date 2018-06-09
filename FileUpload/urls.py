@@ -29,4 +29,5 @@ urlpatterns = [
     path('Teacher/',views.Teacher),
     path('get_teacher_homeworks',views.get_teacher_homeworks,name='get_teacher_homeworks'),
     path('Teacher/assign/',views.assign,name='assign'),
+    path('Logout',views.logout, name='logout'),
 ]

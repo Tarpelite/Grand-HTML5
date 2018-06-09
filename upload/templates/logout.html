@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Logout</title>
+</head>
+<body>
+{% if messages %}
+    {% for message in messages %}
+    <p{% if message.tags %} class="{{ message.tags }}" {% endif %} style="padding: 10px">{{ message }}</p>
+        {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}<a href="{% url 'login' %}">重新登录</a> {% endif %}
+    {% endfor %}
+{% endif %}
+</body>
+</html>

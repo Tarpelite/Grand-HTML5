@@ -25,7 +25,7 @@ def login_user(request):
             user = authenticate(username=username, password=password)
             if user is not None:
                 login(request, user)
-                if user.groups == 'Student':
+                if user.groups.filter(name='Student').exists():
                     return HttpResponseRedirect('/Acount/')
                 else:
                     return  HttpResponseRedirect('/Teacher/')
@@ -140,3 +140,7 @@ def assign(request):
         Homework.objects.create(Description=request.POST.get('Description'),Deadline=request.POST.get('Deadline')).save()
         ret={'status':1}
         return render(request,'Teacher.html')
+
+def logout(request):
+    logout(request)
+    messages.success(request, 'Logout Successfully!')
