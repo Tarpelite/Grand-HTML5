@@ -22,3 +22,4 @@ class Record(models.Model):
         (Downloaded, '已下载'),
     )
     status = models.IntegerField(choices=Status_Choice, default=ToJudge)
+    Scores = models.IntegerField(default=0)

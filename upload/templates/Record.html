@@ -8,7 +8,7 @@
 </head>
 <body>
 <table id="dataTable" lay-filter="data-table"></table>
- <button class="layui-btn layui-btn-warm" type="button" onclick="window.location.href='download_all/'">打包下载已提交作业</button>
+ <button class="layui-btn layui-btn-warm" type="button" onclick="window.location.href='download_all/{{ pk }}'">打包下载已提交作业</button>
 <script src="{% static 'layui/layui.js' %}"></script>
 <script>
     layui.use('table',function () {
