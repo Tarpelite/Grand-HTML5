@@ -163,8 +163,9 @@ def download_homework(request, pk):
                 else:
                     break
 
-    r=Record.objects.filter(pk=pk)
-    file = r.File
+    records =Record.objects.filter(Homework_id__exact=pk)
+    for r in records:
+        file = r.File
     response = StreamingHttpResponse(file_iterator(file))
     response['Content-Type'] = 'application/octet-stream'
     response['Content-Disposition'] = 'attachment;filename="{0}"'.format(file)
@@ -178,9 +179,11 @@ def Record_List(request,pk):
     count = records.count()
     for r in records:
         dic = {}
-        dic['id']= r.Student.username
-        dic['homework']=r.Homework.Description
-        dic['status']=r.get_status_display()
+        dic['id'] = r.Student.username
+        dic['homework'] = r.Homework.Description
+        dic['status'] = r.get_status_display()
+        if r.status == 2:
+            dic['score'] = r.Scores
         dict.append(dic)
 
     resultdict['data'] = dict

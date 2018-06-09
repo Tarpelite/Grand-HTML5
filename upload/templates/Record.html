@@ -24,20 +24,23 @@
                 {field: 'id', title:'学生学号',},
                 {field: 'homework', title: '作业',},
                 {field: 'status', title: '作业状态'},
-                {field: 'grade', width: 100, title:'打分',templet: function (d) {
-                        return '<button data-method="set" class="layui-btn layui-btn-warm" id="btn"' + d.id + ' data-type="auto">打分</button>'
+                {field: 'grade', width: 100, title:'分数',templet: function (d) {
+                    if(d.status==1)
+                        return '<button data-method="set" class="layui-btn layui-btn-warm" id="btn' + d.id + '" data-type="auto">打分</button>'
+                    else
+                        return '<div>d.score</div>'
                     }},
             ]],
             done:function (obj) {
                 for(var index in obj.data){
-                    var itemID = obj[index].id
+                    var itemID = obj.data[index].id
                     layui.use(['jquery','layer'],function () {
                          var $ = layui.jquery, layer=layui.layer;
                          $(document).on('click','#btn'+itemID, function () {
                              layer.open({
                                  type:1,
                                  skin: 'layui-layer-rim',
-                                 content:'<form class="layui-form" action="grade/'+ itemID +'/" method="post">\n' +
+                                 content:'<form class="layui-form" action="{{ pk }}/grade/'+ itemID +'/" method="post">\n' +
                                  '    <div class="layui-form-item">\n' +
                                  '        <label class="layui-form-label">分数</label>\n' +
                                  '        <div class="layui-input-block">\n' +
