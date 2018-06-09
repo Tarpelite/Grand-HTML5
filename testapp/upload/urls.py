@@ -10,5 +10,9 @@ urlpatterns = [
     path('Teacher/', views.Teacher),
     path('get_teacher_homeworks', views.get_teacher_homeworks, name='get_teacher_homeworks'),
     path('assign/', views.assign, name='assign'),
-    path('logout/', views.log_out, name='logout'),
+    path('logout/', views.logout_view, name='logout'),
+    path('Teacher/<int:pk>', views.Specific, name='des'),
+    path('Teacher/<int:pk>/get', views.Record_List, name='get_records'),
+    path('Teacher/download_all/<int:pk>', views.download_homework),
+    path('Teacher/<int:pk>/grade/<int:id>/', views.grade)
 ]

@@ -6,12 +6,22 @@
      <link rel="stylesheet" href="{% static 'layui/css/layui.css' %}">
 </head>
 <body>
-<table id="dataTable" lay-filter="data-table"></table>
- {% csrf_token %}
+<hr class="layui-bg-orange">
+{% if user.is_authenticated %}
+<fieldset class="layui-elem-field layui-filed-title">
+    <legend>Welcome  {{ user.username }}</legend>
+</fieldset>
+<hr class="layui-bg-orange">
+{% endif %}
+<h2>作业管理界面</h2>
 <div>
     <button data-method="set" class="layui-btn layui-btn-warm" id="btn" data-type="auto">发布作业</button>
     <button class="layui-btn layui-btn-warm" type="button" onclick="window.location.href='/upload/logout'">登出</button>
+    <button class="layui-btn layui-btn-warm" type="button" onclick="window.location.href='/'">返回主页</button>
 </div>
+
+<table id="dataTable" lay-filter="data-table"></table>
+ {% csrf_token %}
 <script src="{% static 'layui/layui.js' %}"></script>
 <script>
     layui.use('table',function () {
@@ -25,7 +35,9 @@
             url: '{% url 'get_teacher_homeworks' %}',//数据获取url
             cols: [[//设置列标签、标题、宽度、是否排序等
                 {field: 'id', title:'作业编号',},
-                {field: 'des', title: '作业简介',},
+                {field: 'des', title: '作业简介',templet:function (d) {
+                        return '<a href="/upload/Teacher/'+ d.id +' " class="layui-table-link" target="_blank">'+ d.des +'</a>'
+                    }},
                 {field: 'duedate', title: '截止时间'},
             ]],
         });
@@ -38,13 +50,10 @@
                 layer.open({
                     type:1,
                     skin: 'layui-layer-rim',
-                    content:'<form class="layui-form" action="/upload/assign/" method="post">\n' +
+                    content:'<form class="layui-form" action="/Teacher/assign/" method="post">\n' +
                     '    <div class="layui-form-item">\n' +
                     '        <label class="layui-form-label">作业简述</label>\n' +
-                    '1
-作业23
-2018-06-09T00:00:00Z
-        <div class="layui-input-block">\n' +
+                    '        <div class="layui-input-block">\n' +
                     '            <input type="text" name="Description" required lay-verify="required" placeholder="请输入作业简述"\n' +
                     '            autocomplete="off" class="layui-input">\n' +
                     '        </div>\n' +

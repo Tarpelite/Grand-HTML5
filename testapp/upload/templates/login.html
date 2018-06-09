@@ -1,8 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    {% load staticfiles %}
     <meta charset="UTF-8">
+     <meta name="renderer" content="webkit">
+    <link rel="stylesheet" href="{% static 'layui/css/layui.css' %}">
     <title>欢迎来到软工作业提交系统！</title>
+
 </head>
 <body>
 {% if messages %}
@@ -10,16 +14,38 @@
     <p{% if message.tags %} class="{{ message.tags }}" {% endif %} style="padding: 10px">{{ message }}</p>
     {% endfor %}
 {% endif %}
+<div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-card">
+            <div class="layui-card-header">登录</div>
+            <div class="layui-card-body">
+    <form action="" method="post" class="layui-form" lay-filter="component-form-element">
+        {% csrf_token %}
+        <!--{{ form }}-->
+        <div class="layui-col-lg12">
+            <label class="layui-form-label">用户名：</label>
+            <div class="layui-input-block">
+            <input type="text" name="Username" class="layui-input" autocomplete="off" lay-verify="required|Username">
+            </div>
+        </div>
 
-<form action="" method="post">
-    {% csrf_token %}
-    <!--{{ form }}-->
-    用户名：<input type="text" name="Username">
-    <br>
-    密码：<input type="password" name="Password">
-    <br>
-    <input type="submit" value="登录" />
-</form>
-<a href="{% url 'register' %}">还没有账号？前往注册</a>
+        <div class="layui-col-lg12">
+            <label class="layui-form-label">密码：</label>
+            <div class="layui-input-block">
+            <input type="password" name="Password" class="layui-input" autocomplete="off">
+            </div>
+        </div>
+
+
+        <div class="layui-input-block">
+            <button type="submit" lay-filter="component-form-element" class="layui-btn">登录</button>
+            <button class="layui-btn" type="button" onclick="window.location.href='/upload/register'">注册</button>
+            <button class="layui-btn" type="button" onclick="window.location.href='/'">返回主页</button>
+        </div>
+    </form>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>

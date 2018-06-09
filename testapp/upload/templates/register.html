@@ -1,21 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    {% load staticfiles %}
     <meta charset="UTF-8">
     <title>注册</title>
+      <meta name="renderer" content="webkit">
+    <link rel="stylesheet" href="{% static 'layui/css/layui.css' %}">
 </head>
 <body>
-<form action="" method="post">
-    {% csrf_token %}
-    <!--{{ form }} -->
-    用户名：<input type="text" name="Username">
-    <br>
-    密码：<input type="password" name="Password">
-    <br>
-    确认密码：<input type="password" name="ConfirmPass">
-    <br>
-    <input type="submit" value="注册" />
-</form>
+<div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-card">
+            <div class="layui-card-header">用户注册</div>
+            <div class="layui-card-body">
+    <form action="" method="post" class="layui-form" lay-filter="component-form-element">
+        {% csrf_token %}
+        <!--{{ form }}-->
+        <div class="layui-col-lg12">
+            <label class="layui-form-label">用户名：</label>
+            <div class="layui-input-block">
+            <input type="text" name="Username" class="layui-input">
+            </div>
+        </div>
+
+        <div class="layui-col-lg12">
+            <label class="layui-form-label">密码：</label>
+            <div class="layui-input-block">
+            <input type="password" name="Password" class="layui-input">
+            </div>
+        </div>
+
+        <div class="layui-col-lg12">
+            <label class="layui-form-label">确认密码：</label>
+            <div class="layui-input-block">
+            <input type="password" name="ConfirmPass" class="layui-input">
+            </div>
+        </div>
+
+        <div class="layui-input-block">
+            <button type="submit" lay-filter="component-form-element" class="layui-btn">注册</button>
+            <button class="layui-btn" type="button" onclick="window.location.href='/'">返回主页</button>
+        </div>
+    </form>
+            </div>
+        </div>
+    </div>
+</div>
 {% if messages %}
     {% for message in messages %}
     <p{% if message.tags %} class="{{ message.tags }}" {% endif %} style="padding: 10px">{{ message }}</p>
