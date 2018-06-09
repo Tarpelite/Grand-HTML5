@@ -3,11 +3,13 @@ from django.contrib.auth import authenticate, login
 from django.contrib import messages
 from .forms import loginUser, registerUser
 from django.contrib.auth.models import User,Group
+from django.contrib.auth import logout
 from django.core.exceptions import ObjectDoesNotExist
-from .models import Homework
-from django.http import JsonResponse,HttpResponseRedirect
+from .models import Homework, Record
+from django.http import JsonResponse,HttpResponseRedirect, Http404
 from django.conf import settings
 from django.views.decorators.csrf import csrf_exempt
+from django.utils import timezone
 
 # Create your views here.
 
@@ -24,12 +26,15 @@ def login_user(request):
             user = authenticate(username=username, password=password)
             if user is not None:
                 login(request, user)
-                return HttpResponseRedirect('/Acount/')
+                if user.groups.filter(name='Student').exists():
+                    return HttpResponseRedirect('/upload/Account/')
+                else:
+                    return HttpResponseRedirect('/upload/Teacher/')
             else:
-                messages.error(request, 'Login Failed!')
+                messages.error(request, '登录失败！')
     else:
         form = loginUser()
-    return render(request,'login.html',{'form':form})
+    return render(request,'login.html')
 
 def register_user(request):
     print(request)
@@ -40,18 +45,18 @@ def register_user(request):
                 username = form.cleaned_data['Username']
                 if User.objects.filter(username__exact=username).count()==0:
                     password = form.cleaned_data['Password']
-                    user = User.objects.create_user(username=username,password=password)
+                    user = User.objects.create_user(username=username, password=password)
                     user.groups.add(Group.objects.get(name='Student'))
                     user.save()
-                    messages.success(request, 'Register Successfully!')
+                    messages.success(request, '注册成功!')
                 else:
-                    messages.error("User has registered")
+                    messages.error(request, "该用户名已经被注册")
             else:
-                messages.error(request, 'Passwords do not match!')
+                messages.error(request, '两次输入的密码不匹配')
 
     else:
         form = registerUser()
-    return render(request,'register.html',{'form':form})
+    return render(request, 'register.html')
 
 @csrf_exempt
 def Account(request):
@@ -59,6 +64,7 @@ def Account(request):
     个人主页
     :return: 渲染个人主页
     """
+
     return render(request,'Account.html')
 
 @csrf_exempt
@@ -68,36 +74,75 @@ def get_homeworks(request):
     :return: 返回一个包含所有作业信息的json文件
     """
     homeworks = Homework.objects.all()
-    resultdict={}
+    resultdict = {}
     dict = []
     count = homeworks.count()
     for h in homeworks:
-        dic={}
-        dic['id']=h.Number
-        dic['des']=h.Description
-        dic['duedate']=h.Deadline
-        if h.Status:
-            dic['status']="已提交"
+        dic = {}
+        dic['id'] = h.pk
+        dic['des'] = h.Description
+        dic['duedate'] = h.Deadline
+        if Record.objects.filter(Homework=h).filter(Student=request.user).count() > 0:
+            dic['status'] = "已提交"
         else:
-            dic['status']="未提交"
+            dic['status'] = "未提交"
         dict.append(dic)
-    resultdict['data']=dict
+    resultdict['data'] = dict
     resultdict['code'] = 0
     resultdict['msg'] = ""
     resultdict['count'] = count
-    return JsonResponse(resultdict,safe=False)
+    return JsonResponse(resultdict, safe=False)
 
 @csrf_exempt
-def upload_file(request):
+def upload_file(request,pk):
     """
     处理上传文件
     :return: 如果上传成功并成功保存，则返回一个json文件，其中statu=1表示成功，status=0则表示失败
     """
     file = request.FILES.get('file')
-    filename = '%s/%s'%(settings.MEDIA_ROOT, file.name)
-    with open(filename,'wb')as f:
+    filename = '%s/%s' % (settings.MEDIA_ROOT, file.name)
+    with open(filename, 'wb')as f:
         for ff in file.chunks():
             f.write(ff)
 
-    ret={'status':1}
-    return  JsonResponse(ret)
+    ret = {'status': 1}
+    uploaded = Homework.objects.get(pk=pk)
+    Record.objects.create(Homework=uploaded, Student=request.user, Upload_time=timezone.now(), File=file).save()
+
+    return JsonResponse(ret)
+
+@csrf_exempt
+def Teacher(request):
+    return render(request, 'Teacher.html')
+
+@csrf_exempt
+def get_teacher_homeworks(request):
+    homeworks = Homework.objects.all()
+    resultdict={}
+    dict=[]
+    count=homeworks.count()
+    for h in homeworks:
+        dic={}
+        dic['id']=h.pk
+        dic['des']=h.Description
+        dic['duedate']=h.Deadline
+        dict.append(dic)
+    resultdict['data'] = dict
+    resultdict['code'] = 0
+    resultdict['msg'] = ""
+    resultdict['count'] = count
+    return JsonResponse(resultdict, safe=False)
+
+@csrf_exempt
+def assign(request):
+    if request.method == 'POST':
+        Homework.objects.create(Description=request.POST.get('Description'), Deadline=request.POST.get('Deadline')).save()
+        ret={'status':1}
+        return render(request, 'Teacher.html')
+    else:
+        return HttpResponseRedirect('/')
+
+def log_out(request):
+    logout(request)
+    messages.success(request, "您已退出！")
+    return render(request, 'logout.html')

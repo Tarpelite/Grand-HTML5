@@ -13,9 +13,13 @@
 
 <form action="" method="post">
     {% csrf_token %}
-    {{ form }}
+    <!--{{ form }}-->
+    用户名：<input type="text" name="Username">
+    <br>
+    密码：<input type="password" name="Password">
+    <br>
     <input type="submit" value="登录" />
 </form>
-<a href="{% url 'register' %}">Register</a>
+<a href="{% url 'register' %}">还没有账号？前往注册</a>
 </body>
 </html>

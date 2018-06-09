@@ -13,6 +13,10 @@
 
 <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
 <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+	<!-- Start WOWSlider.com HEAD section -->
+	<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+	<!-- End WOWSlider.com HEAD section -->
 
 <!-- popper.min.js 用于弹窗、提示、下拉菜单 -->
 <script src="https://cdn.bootcss.com/popper.js/1.12.5/umd/popper.min.js"></script>
@@ -56,9 +60,23 @@
 		</div>
 		<div class="col-md-2"></div>
 	</div>
+
 	<div class="row">
 		<div class="col-md-2"></div>
 		<div class="col-md-8">
+			<div class="btn-group" role="group">
+				<button class="btn btn-secondary" type="button" onclick="window.location.href='/upload/register'">
+					注册
+				</button>
+				<button class="btn btn-secondary" type="button" onclick="window.location.href='/upload/login'" >
+					登录
+				</button>
+				{%if user.is_authenticated %}
+				<button class="btn btn-secondary" type="button" onclick="window.location.href='/upload/logout'">
+					登出
+				</button>
+				{% endif %}
+			</div>
 			<div class="carousel slide" id="carousel-614076">
 				<ol class="carousel-indicators">
 					<li data-slide-to="0" data-target="#carousel-614076">
@@ -125,9 +143,9 @@
 				<div class="col-md-4">
 				</div>
 				<div class="col-md-4">
-					<h3 class="text-right ">
+					<h4 class="text-right ">
 						<strong>联系我们:cityharkness@buaa.edu.cn</strong>
-					</h3>
+					</h4>
 				</div>
 				<div class="col-md-4">
 				</div>
@@ -136,6 +154,7 @@
 	</div>
 </div>
   <script src="{% static 'layui/layui.all.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/a.js' %}"></script>
  <!-- jQuery (Bootstrap 的 JavaScript 插件需要引入 jQuery) -->
       <script src="https://code.jquery.com/jquery.js"></script>
 </body>
