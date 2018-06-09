@@ -25,10 +25,10 @@
                 {field: 'homework', title: '作业',},
                 {field: 'status', title: '作业状态'},
                 {field: 'grade', width: 100, title:'分数',templet: function (d) {
-                    if(d.status==1)
+                    if(d.status=='待评判')
                         return '<button data-method="set" class="layui-btn layui-btn-warm" id="btn' + d.id + '" data-type="auto">打分</button>'
                     else
-                        return '<div>d.score</div>'
+                        return '<div>'+d.score+'</div>'
                     }},
             ]],
             done:function (obj) {
