@@ -22,7 +22,9 @@
             url: '/Teacher/{{pk}}/get',//数据获取url
             cols: [[//设置列标签、标题、宽度、是否排序等
                 {field: 'id', title:'学生学号',},
-                {field: 'homework', title: '作业',},
+                {field: 'homework', title: '作业',templet:function (d) {
+                        return '<a href="/Teacher/{{ pk }}/download/'+d.id+'" class="layui-table-link">'+d.homework+'</a>'
+                    }},
                 {field: 'status', title: '作业状态'},
                 {field: 'grade', width: 100, title:'分数',templet: function (d) {
                     if(d.status=='待评判')

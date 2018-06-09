@@ -153,7 +153,7 @@ def logout_view(request):
     return  render(request, 'logout.html')
 
 @csrf_exempt
-def download_homework(request, pk):
+def download_homework(request, pk, id):
     def file_iterator(file, chunk_size=512):
         with open(file) as f:
             while True:
@@ -163,16 +163,17 @@ def download_homework(request, pk):
                 else:
                     break
 
-    records =Record.objects.filter(Homework_id__exact=pk)
-    for r in records:
-        file = r.File
+    records =Record.objects.filter(Homework_id__exact=pk).get(Student__username__exact=id)
+    file = records.File
+    records.status = 4
+    records.save()
     response = StreamingHttpResponse(file_iterator(file))
     response['Content-Type'] = 'application/octet-stream'
     response['Content-Disposition'] = 'attachment;filename="{0}"'.format(file)
-    return  response
+    return response
 
 @csrf_exempt
-def Record_List(request,pk):
+def Record_List(request, pk):
     records = Record.objects.filter(pk=pk)
     resultdict = {}
     dict = []
