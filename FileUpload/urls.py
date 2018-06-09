@@ -25,5 +25,8 @@ urlpatterns = [
     path('register/',views.register_user, name='register'),
     path('Acount/',views.Account),
     path('get_homeworks/',views.get_homeworks,name='get_homeworks'),
-    path('upload_file/',views.upload_file,name='upload_file'),
+    path('Acount/upload_file/<int:pk>/',views.upload_file,name='upload_file'),
+    path('Teacher/',views.Teacher),
+    path('get_teacher_homeworks',views.get_teacher_homeworks,name='get_teacher_homeworks'),
+    path('Teacher/assign/',views.assign,name='assign'),
 ]

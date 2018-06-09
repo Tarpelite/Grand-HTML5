@@ -4,10 +4,11 @@ from django.contrib import messages
 from .forms import loginUser, registerUser
 from django.contrib.auth.models import User,Group
 from django.core.exceptions import ObjectDoesNotExist
-from .models import Homework
+from .models import Homework, Record
 from django.http import JsonResponse,HttpResponseRedirect
 from django.conf import settings
 from django.views.decorators.csrf import csrf_exempt
+from django.utils import timezone
 
 # Create your views here.
 
@@ -24,7 +25,10 @@ def login_user(request):
             user = authenticate(username=username, password=password)
             if user is not None:
                 login(request, user)
-                return HttpResponseRedirect('/Acount/')
+                if user.groups == 'Student':
+                    return HttpResponseRedirect('/Acount/')
+                else:
+                    return  HttpResponseRedirect('/Teacher/')
             else:
                 messages.error(request, 'Login Failed!')
     else:
@@ -32,7 +36,6 @@ def login_user(request):
     return render(request,'login.html',{'form':form})
 
 def register_user(request):
-    print(request)
     if request.method == 'POST':
         form = registerUser(request.POST)
         if form.is_valid():
@@ -54,6 +57,28 @@ def register_user(request):
     return render(request,'register.html',{'form':form})
 
 @csrf_exempt
+def Teacher(request):
+    return  render(request,'Teacher.html')
+
+@csrf_exempt
+def get_teacher_homeworks(request):
+    homeworks = Homework.objects.all()
+    resultdict={}
+    dict=[]
+    count=homeworks.count()
+    for h in homeworks:
+        dic={}
+        dic['id']=h.pk
+        dic['des']=h.Description
+        dic['duedate']=h.Deadline
+        dict.append(dic)
+    resultdict['data'] = dict
+    resultdict['code'] = 0
+    resultdict['msg'] = ""
+    resultdict['count'] = count
+    return JsonResponse(resultdict, safe=False)
+
+@csrf_exempt
 def Account(request):
     """
     个人主页
@@ -69,16 +94,17 @@ def get_homeworks(request):
 
     :return: 返回一个包含所有作业信息的json文件
     """
+
     homeworks = Homework.objects.all()
-    resultdict={}
+    resultdict = {}
     dict = []
     count = homeworks.count()
     for h in homeworks:
         dic={}
-        dic['id']=h.Number
+        dic['id']=h.pk
         dic['des']=h.Description
         dic['duedate']=h.Deadline
-        if h.Status:
+        if Record.objects.filter(Homework=h).filter(Student=request.user).count()>0:
             dic['status']="已提交"
         else:
             dic['status']="未提交"
@@ -90,7 +116,7 @@ def get_homeworks(request):
     return JsonResponse(resultdict,safe=False)
 
 @csrf_exempt
-def upload_file(request):
+def upload_file(request, pk):
     """
     处理上传文件
 
@@ -103,4 +129,14 @@ def upload_file(request):
             f.write(ff)
 
     ret={'status':1}
+    uploaded = Homework.objects.get(pk=pk)
+    Record.objects.create(Homework=uploaded,Student=request.user,Upload_time=timezone.now(),File=file).save()
+
     return  JsonResponse(ret)
+
+@csrf_exempt
+def assign(request):
+    if request.method == 'POST':
+        Homework.objects.create(Description=request.POST.get('Description'),Deadline=request.POST.get('Deadline')).save()
+        ret={'status':1}
+        return render(request,'Teacher.html')

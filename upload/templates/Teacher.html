@@ -1,0 +1,82 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>管理作业</title>
+     <link rel="stylesheet" href="{% static 'layui/css/layui.css' %}">
+</head>
+<body>
+<table id="dataTable" lay-filter="data-table"></table>
+ {% csrf_token %}
+<div><button data-method="set" class="layui-btn layui-btn-warm" id="btn" data-type="auto">发布作业</button></div>
+<script src="{% static 'layui/layui.js' %}"></script>
+<script>
+    layui.use('table',function () {
+        var table=layui.table;
+        var HomeworkTable = table.render({//渲染table
+            method: 'post',//数据传输方式为post
+            height: 'full-100',//高度为屏幕高度-20
+            cellMinWidth: 20,//单元格最小宽度为80
+            page: false,
+            elem: '#dataTable',//设置容器
+            url: '{% url 'get_teacher_homeworks' %}',//数据获取url
+            cols: [[//设置列标签、标题、宽度、是否排序等
+                {field: 'id', title:'作业编号',},
+                {field: 'des', title: '作业简介',},
+                {field: 'duedate', title: '截止时间'},
+            ]],
+        });
+    })
+</script>
+<script>
+    layui.use(['jquery','layer'],function () {
+            var $ = layui.jquery, layer=layui.layer;
+            $(document).on('click','#btn',function () {
+                layer.open({
+                    type:1,
+                    skin: 'layui-layer-rim',
+                    content:'<form class="layui-form" action="/Teacher/assign/" method="post">\n' +
+                    '    <div class="layui-form-item">\n' +
+                    '        <label class="layui-form-label">作业简述</label>\n' +
+                    '        <div class="layui-input-block">\n' +
+                    '            <input type="text" name="Description" required lay-verify="required" placeholder="请输入作业简述"\n' +
+                    '            autocomplete="off" class="layui-input">\n' +
+                    '        </div>\n' +
+                    '    </div>\n' +
+                    '    <div class="layui-form-item">\n' +
+                    '        <label class="layui-form-label">截止时间</label>\n' +
+                    '      <div class="layui-input-inline">\n' +
+                    '        <input type="text" name="Deadline" class="layui-input" id="dateTime" placeholder="请选择截止时间">\n' +
+                    '      </div>\n' +
+                    '    </div>\n' +
+                    '    <div class="layui-form-item">\n' +
+                    '    <div class="layui-input-block">\n' +
+                    '      <button class="layui-btn" lay-submit lay-filter="formDemo">发布作业</button>\n' +
+                    '    </div>\n' +
+                    '  </div>\n' +
+                    '</form>\n' +
+                    '<script>\n' +
+                    '//Demo\n' +
+                    'layui.use([\'form\',\'laydate\'], function(){\n' +
+                    '  var form = layui.form;\n' +
+                    '  var laydate = layui.laydate;\n' +
+                    '  laydate.render({\n' +
+                    '    elem: \'#dateTime\', //指定元素\n' +
+                    '      type:\'datetime\'\n' +
+                    '  });\n' +
+                    '\n' +
+                    '  //监听提交\n' +
+                    '  form.on(\'submit(formDemo)\', function(data){\n' +
+                    '    layer.msg("发布成功！");\n' +
+
+                    '  });\n' +
+                    '});\n' +
+                    '<\/script>'
+                })
+            })
+
+        })
+</script>
+</body>
+</html>
