@@ -142,11 +142,13 @@ def assign(request):
         ret={'status':1}
         return render(request,'Teacher.html')
 
+@csrf_exempt
 def logout_view(request):
     logout(request)
     messages.success(request, 'Logout Successfully!')
     return  render(request, 'logout.html')
 
+@csrf_exempt
 def download_homework(request, pk):
     def file_iterator(file, chunk_size=512):
         with open(file) as f:
@@ -164,6 +166,7 @@ def download_homework(request, pk):
     response['Content-Disposition'] = 'attachment;filename="{0}"'.format(file)
     return  response
 
+@csrf_exempt
 def Record_List(request,pk):
     records = Record.objects.filter(pk=pk)
     resultdict = {}
@@ -171,9 +174,9 @@ def Record_List(request,pk):
     count = records.count()
     for r in records:
         dic = {}
-        dic['id']= r.Student.Username
+        dic['id']= r.Student.username
         dic['homework']=r.Homework.Description
-        dic['status']=r.Status
+        dic['status']=r.status
         dict.append(dic)
 
     resultdict['data'] = dict
@@ -182,5 +185,6 @@ def Record_List(request,pk):
     resultdict['count'] = count
     return JsonResponse(resultdict, safe=False)
 
+@csrf_exempt
 def Specific(request,pk):
-    return render(request,'Record.html')
+    return render(request,'Record.html', {'pk':pk})

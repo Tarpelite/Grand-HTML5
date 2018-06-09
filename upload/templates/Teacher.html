@@ -25,15 +25,12 @@
             cols: [[//设置列标签、标题、宽度、是否排序等
                 {field: 'id', title:'作业编号',},
                 {field: 'des', title: '作业简介',templet:function (d) {
-                        return '<a href="/'+ d.id +' " class="layui-table-link" target="_blank">'+ d.des +'</a>'
+                        return '<a href="/Teacher/'+ d.id +' " class="layui-table-link" target="_blank">'+ d.des +'</a>'
                     }},
                 {field: 'duedate', title: '截止时间'},
             ]],
         });
     })
-</script>
-<script type="text/html" id="desTpl">
-    <a href="/{{ resultdict.id }}" class="layui-table-link" target="_blank">{{ resultdict.des }}</a>
 </script>
 <script>
     layui.use(['jquery','layer'],function () {

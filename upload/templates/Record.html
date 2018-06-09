@@ -19,7 +19,7 @@
             cellMinWidth: 20,//单元格最小宽度为80
             page: false,
             elem: '#dataTable',//设置容器
-            url: '{% url 'get_records' %}',//数据获取url
+            url: '/Teacher/{{pk}}/get',//数据获取url
             cols: [[//设置列标签、标题、宽度、是否排序等
                 {field: 'id', title:'学生学号',},
                 {field: 'homework', title: '作业',},

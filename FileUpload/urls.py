@@ -32,5 +32,5 @@ urlpatterns = [
     path('Logout',views.logout, name='logout'),
     path('upload/download/', views.download_homework),
     path('Teacher/<int:pk>', views.Specific, name='des'),
-    path('Teacher/<int:pk>/get',views.Record_List, name='get_records')
+    path('Teacher/<int:pk>/get', views.Record_List, name='get_records')
 ]
