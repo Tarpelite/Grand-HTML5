@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login,logout
 from django.contrib import messages
 from .forms import loginUser, registerUser
 from django.contrib.auth.models import User,Group
@@ -9,6 +9,7 @@ from django.http import JsonResponse,HttpResponseRedirect
 from django.conf import settings
 from django.views.decorators.csrf import csrf_exempt
 from django.utils import timezone
+from django .http import StreamingHttpResponse
 
 # Create your views here.
 
@@ -141,6 +142,45 @@ def assign(request):
         ret={'status':1}
         return render(request,'Teacher.html')
 
-def logout(request):
+def logout_view(request):
     logout(request)
     messages.success(request, 'Logout Successfully!')
+    return  render(request, 'logout.html')
+
+def download_homework(request, pk):
+    def file_iterator(file, chunk_size=512):
+        with open(file) as f:
+            while True:
+                c = f.read(chunk_size)
+                if c:
+                    yield c
+                else:
+                    break
+
+    r=Record.objects.filter(pk=pk)
+    file = r.File
+    response = StreamingHttpResponse(file_iterator(file))
+    response['Content-Type'] = 'application/octet-stream'
+    response['Content-Disposition'] = 'attachment;filename="{0}"'.format(file)
+    return  response
+
+def Record_List(request,pk):
+    records = Record.objects.filter(pk=pk)
+    resultdict = {}
+    dict = []
+    count = records.count()
+    for r in records:
+        dic = {}
+        dic['id']= r.Student.Username
+        dic['homework']=r.Homework.Description
+        dic['status']=r.Status
+        dict.append(dic)
+
+    resultdict['data'] = dict
+    resultdict['code'] = 0
+    resultdict['msg'] = ""
+    resultdict['count'] = count
+    return JsonResponse(resultdict, safe=False)
+
+def Specific(request,pk):
+    return render(request,'Record.html')

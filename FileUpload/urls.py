@@ -30,4 +30,7 @@ urlpatterns = [
     path('get_teacher_homeworks',views.get_teacher_homeworks,name='get_teacher_homeworks'),
     path('Teacher/assign/',views.assign,name='assign'),
     path('Logout',views.logout, name='logout'),
+    path('upload/download/', views.download_homework),
+    path('Teacher/<int:pk>', views.Specific, name='des'),
+    path('Teacher/<int:pk>/get',views.Record_List, name='get_records')
 ]

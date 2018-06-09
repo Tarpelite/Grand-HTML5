@@ -1,0 +1,68 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>作业提交详情</title>
+     <link rel="stylesheet" href="{% static 'layui/css/layui.css' %}">
+</head>
+<body>
+<table id="dataTable" lay-filter="data-table"></table>
+ <button class="layui-btn layui-btn-warm" type="button" onclick="window.location.href='download_all/'">打包下载已提交作业</button>
+<script src="{% static 'layui/layui.js' %}"></script>
+<script>
+    layui.use('table',function () {
+        var table=layui.table;
+        var HomeworkTable = table.render({//渲染table
+            method: 'post',//数据传输方式为post
+            height: 'full-100',//高度为屏幕高度-20
+            cellMinWidth: 20,//单元格最小宽度为80
+            page: false,
+            elem: '#dataTable',//设置容器
+            url: '{% url 'get_records' %}',//数据获取url
+            cols: [[//设置列标签、标题、宽度、是否排序等
+                {field: 'id', title:'学生学号',},
+                {field: 'homework', title: '作业',},
+                {field: 'status', title: '作业状态'},
+                {field: 'grade', width: 100, title:'打分',templet: function (d) {
+                        return '<button data-method="set" class="layui-btn layui-btn-warm" id="btn"' + d.id + ' data-type="auto">打分</button>'
+                    }},
+            ]],
+            done:function (obj) {
+                for(var index in obj.data){
+                    var itemID = obj[index].id
+                    layui.use(['jquery','layer'],function () {
+                         var $ = layui.jquery, layer=layui.layer;
+                         $(document).on('click','#btn'+itemID, function () {
+                             layer.open({
+                                 type:1,
+                                 skin: 'layui-layer-rim',
+                                 content:'<form class="layui-form" action="grade/'+ itemID +'/" method="post">\n' +
+                                 '    <div class="layui-form-item">\n' +
+                                 '        <label class="layui-form-label">分数</label>\n' +
+                                 '        <div class="layui-input-block">\n' +
+                                 '            <input type="text" name="grade" autocomplete="off" class="layui-input">\n' +
+                                 '        </div>\n' +
+                                 '        <div class="layui-input-block">\n' +
+                                 '            <button class="layui-btn" lay-submit lay-filter="*">提交</button>\n' +
+                                 '        </div>\n' +
+                                 '    </div>\n' +
+                                 '</form>\n' +
+                                 '<script>\n' +
+                                 '    layui.use(\'form\',function () {\n' +
+                                 '        var form = layui.form;\n' +
+                                 '        form.on(\'submit(*)\',function () {\n' +
+                                 '            layer.msg("打分成功！");\n' +
+                                 '        });\n' +
+                                 '    });\n' +
+                                 '<\/script>'
+                             })
+                         })
+                    })
+                }
+            }
+        });
+    })
+</script>
+</body>
+</html>
