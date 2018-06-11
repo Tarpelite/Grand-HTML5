@@ -7,9 +7,15 @@
      <link rel="stylesheet" href="{% static 'layui/css/layui.css' %}">
 </head>
 <body>
+{% if user.is_authenticated %}
+<fieldset class="layui-elem-field layui-filed-title">
+    <legend>Welcome  {{ user.username }}</legend>
+</fieldset>
+<hr class="layui-bg-orange">
+{% endif %}
+<h2>作业管理界面</h2>
+<button class="layui-btn layui-btn-warm" type="button" onclick="window.location.href='/upload/Teacher'">返回</button>
 <table id="dataTable" lay-filter="data-table"></table>
- <button class="layui-btn layui-btn-warm" type="button" onclick="window.location.href='download_all/{{ pk }}'">打包下载已提交作业</button>
- <button class="layui-btn layui-btn-warm" type="button" onclick="window.location.href='/upload/Teacher'">返回</button>
 <script src="{% static 'layui/layui.js' %}"></script>
 <script>
     layui.use('table',function () {
@@ -23,10 +29,15 @@
             url: '/upload/Teacher/{{pk}}/get',//数据获取url
             cols: [[//设置列标签、标题、宽度、是否排序等
                 {field: 'id', title:'学生学号',},
-                {field: 'homework', title: '作业',},
+                {field: 'homework', title: '作业',templet:function (d) {
+                        return '<a href="/upload/Teacher/{{ pk }}/download/'+d.id+'" class="layui-table-link">'+d.homework+'</a>'
+                    }},
                 {field: 'status', title: '作业状态'},
-                {field: 'grade', width: 100, title:'打分',templet: function (d) {
+                {field: 'grade', width: 100, title:'分数',templet: function (d) {
+                    if(d.status!='已评判')
                         return '<button data-method="set" class="layui-btn layui-btn-warm" id="btn' + d.id + '" data-type="auto">打分</button>'
+                    else
+                        return '<div>'+d.score+'</div>'
                     }},
             ]],
             done:function (obj) {
@@ -38,7 +49,7 @@
                              layer.open({
                                  type:1,
                                  skin: 'layui-layer-rim',
-                                 content:'<form class="layui-form" action="{{pk}}/grade/'+ itemID +'/" method="post">\n' +
+                                 content:'<form class="layui-form" action="{{ pk }}/grade/'+ itemID +'/" method="post">\n' +
                                  '    <div class="layui-form-item">\n' +
                                  '        <label class="layui-form-label">分数</label>\n' +
                                  '        <div class="layui-input-block">\n' +

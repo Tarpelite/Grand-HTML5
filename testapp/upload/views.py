@@ -11,9 +11,11 @@ from django.conf import settings
 from django.views.decorators.csrf import csrf_exempt
 from django.utils import timezone
 from django.http import StreamingHttpResponse
+from django.urls import reverse
+import codecs
 
 # Create your views here.
-
+@csrf_exempt
 def login_user(request):
     """
     登陆操作部分
@@ -108,6 +110,7 @@ def upload_file(request,pk):
     """
     file = request.FILES.get('file')
     filename = '%s/%s' % (settings.MEDIA_ROOT, file.name)
+    print(file.name)
     with open(filename, 'wb')as f:
         for ff in file.chunks():
             f.write(ff)
@@ -158,25 +161,41 @@ def batch_log(request):
     return
 
 @csrf_exempt
-def download_homework(request, pk):
+def download_homework(request, pk, id):
     def file_iterator(file, chunk_size=512):
-        with open(file) as f:
-            while True:
-                c = f.read(chunk_size)
-                if c:
-                    yield c
-                else:
-                    break
-        r = Record.objects.filter(pk=pk)
-        file = r.File
-        response = StreamingHttpResponse(file_iterator(file))
-        response['Content-Type'] = 'application/octet-stream'
-        response['Content-Disposition'] = 'attachment;filename="{0}"'.format(file)
-        return response
+        try:
+            with codecs.open(file, "r", "gbk") as f:
+                while True:
+                    c = f.read(chunk_size)
+                    if c:
+                        yield c
+                    else:
+                        break
+        except:
+            with codecs.open(file, "r", "utf8") as f:
+                while True:
+                    c = f.read(chunk_size)
+                    if c:
+                        yield c
+                    else:
+                        break
+
+    records =Record.objects.filter(Homework_id__exact=pk).get(Student__username__exact=id)
+    file = records.File
+    print(file.name)
+    records.status = 4
+    records.save()
+    filename = r'%s/%s' % (settings.MEDIA_ROOT, file.name)
+    print(filename)
+    response = StreamingHttpResponse(file_iterator(filename))
+    response['Content-Type'] = 'application/octet-stream'
+    response['Content-Disposition'] = "attachment;filename='{0}'".format(file)
+    print(response['Content-Disposition'])
+    return response
 
 @csrf_exempt
 def Record_List(request, pk):
-    records = Record.objects.filter(pk=pk)
+    records = Record.objects.filter(Homework_id__exact=pk)
     resultdict = {}
     dict = []
     count = records.count()
@@ -185,6 +204,8 @@ def Record_List(request, pk):
         dic['id'] = r.Student.username
         dic['homework'] = r.Homework.Description
         dic['status'] = r.get_status_display()
+        if r.status == 2:
+            dic['score'] = r.Scores
         dict.append(dic)
 
 
@@ -205,5 +226,5 @@ def grade(request,pk,id):
         record.Scores = request.POST.get('grade')
         record.status = 2
         record.save()
-        return render(request, 'Teacher.html')
+        return HttpResponseRedirect(reverse('des', args=(pk, )))
 

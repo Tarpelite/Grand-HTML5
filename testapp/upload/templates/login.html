@@ -14,36 +14,33 @@
     <p{% if message.tags %} class="{{ message.tags }}" {% endif %} style="padding: 10px">{{ message }}</p>
     {% endfor %}
 {% endif %}
+
 <div class="layui-fluid">
     <div class="layui-row layui-col-space15">
-        <div class="layui-card">
             <div class="layui-card-header">登录</div>
             <div class="layui-card-body">
-    <form action="" method="post" class="layui-form" lay-filter="component-form-element">
+    <form action="" method="post" class="layui-form">
         {% csrf_token %}
-        <!--{{ form }}-->
-        <div class="layui-col-lg12">
+        <div class="layui-col-lg6 layui-form-item">
             <label class="layui-form-label">用户名：</label>
             <div class="layui-input-block">
-            <input type="text" name="Username" class="layui-input" autocomplete="off" lay-verify="required|Username">
+            <input type="text" name="Username" class="layui-input" >
             </div>
         </div>
 
-        <div class="layui-col-lg12">
+        <div class="layui-col-lg6 layui-form-item">
             <label class="layui-form-label">密码：</label>
             <div class="layui-input-block">
-            <input type="password" name="Password" class="layui-input" autocomplete="off">
+            <input type="password" name="Password" class="layui-input">
             </div>
         </div>
 
 
-        <div class="layui-input-block">
+        <div class="layui-input-block layui-form-item">
             <button type="submit" lay-filter="component-form-element" class="layui-btn">登录</button>
-            <button class="layui-btn" type="button" onclick="window.location.href='/upload/register'">注册</button>
             <button class="layui-btn" type="button" onclick="window.location.href='/'">返回主页</button>
         </div>
     </form>
-            </div>
         </div>
     </div>
 </div>

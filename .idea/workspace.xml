@@ -4,14 +4,10 @@
     <list default="true" id="9a77ceaa-e923-459e-b44a-01276c9b2717" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/testapp/app1/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/testapp/app1/templates/base.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/testapp/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/testapp/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/testapp/upload/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/testapp/upload/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/testapp/upload/templates/Account.html" beforeDir="false" afterPath="$PROJECT_DIR$/testapp/upload/templates/Account.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/testapp/upload/templates/Record.html" beforeDir="false" afterPath="$PROJECT_DIR$/testapp/upload/templates/Record.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/testapp/upload/templates/Teacher.html" beforeDir="false" afterPath="$PROJECT_DIR$/testapp/upload/templates/Teacher.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/testapp/upload/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/testapp/upload/templates/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/testapp/upload/templates/logout.html" beforeDir="false" afterPath="$PROJECT_DIR$/testapp/upload/templates/logout.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/testapp/upload/templates/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/testapp/upload/templates/register.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/testapp/upload/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/testapp/upload/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/testapp/upload/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/testapp/upload/views.py" afterDir="false" />
     </list>
@@ -24,11 +20,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/testapp/upload/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="525">
-              <caret line="209" lean-forward="true" selection-start-line="209" selection-end-line="209" />
+            <state relative-caret-position="483">
+              <caret line="187" column="58" lean-forward="true" selection-start-line="187" selection-start-column="58" selection-end-line="187" selection-end-column="58" />
               <folding>
                 <element signature="e#0#35#0" expanded="true" />
               </folding>
@@ -39,8 +35,8 @@
       <file leaf-file-name="Teacher.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/testapp/upload/templates/Teacher.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="216">
-              <caret line="33" column="34" selection-start-line="33" selection-start-column="34" selection-end-line="33" selection-end-column="34" />
+            <state relative-caret-position="42">
+              <caret line="9" selection-start-line="9" selection-end-line="9" />
             </state>
           </provider>
         </entry>
@@ -57,8 +53,8 @@
       <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/testapp/upload/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="324">
-              <caret line="18" column="25" lean-forward="true" selection-start-line="18" selection-start-column="25" selection-end-line="18" selection-end-column="25" />
+            <state relative-caret-position="288">
+              <caret line="18" column="25" selection-start-line="18" selection-start-column="25" selection-end-line="18" selection-end-column="25" />
               <folding>
                 <element signature="e#0#28#0" expanded="true" />
               </folding>
@@ -70,21 +66,16 @@
         <entry file="file://$PROJECT_DIR$/testapp/upload/urls.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="288">
-              <caret line="17" column="1" lean-forward="true" selection-start-line="17" selection-start-column="1" selection-end-line="17" selection-end-column="1" />
+              <caret line="17" column="1" selection-start-line="17" selection-start-column="1" selection-end-line="17" selection-end-column="1" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="manage.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/testapp/manage.py">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file leaf-file-name="Record.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Record.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/testapp/upload/templates/Record.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="234">
-              <caret line="40" column="101" lean-forward="true" selection-start-line="40" selection-start-column="101" selection-end-line="40" selection-end-column="101" />
+            <state relative-caret-position="144">
+              <caret line="8" column="6" lean-forward="true" selection-start-line="8" selection-start-column="6" selection-end-line="8" selection-end-column="6" />
             </state>
           </provider>
         </entry>
@@ -92,8 +83,17 @@
       <file leaf-file-name="login.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/testapp/upload/templates/login.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="347">
-              <caret line="33" column="43" selection-start-line="33" selection-start-column="43" selection-end-line="33" selection-end-column="43" />
+            <state relative-caret-position="476">
+              <caret line="43" column="13" selection-start-line="43" selection-start-column="13" selection-end-line="43" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/testapp/app1/views.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="28">
+              <caret line="48" column="25" selection-start-line="48" selection-start-column="25" selection-end-line="48" selection-end-column="25" />
             </state>
           </provider>
         </entry>
@@ -101,7 +101,7 @@
       <file leaf-file-name="Account.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/testapp/upload/templates/Account.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="324">
+            <state relative-caret-position="648">
               <caret line="36" column="48" selection-start-line="36" selection-start-column="48" selection-end-line="36" selection-end-column="48" />
             </state>
           </provider>
@@ -132,6 +132,7 @@
       <find>login</find>
       <find>upload</find>
       <find>register</find>
+      <find>down</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -161,20 +162,20 @@
         <option value="$PROJECT_DIR$/testapp/app1/templates/base.html" />
         <option value="$PROJECT_DIR$/testapp/upload/templates/batch_log.html" />
         <option value="$PROJECT_DIR$/testapp/upload/templates/PPT_upload.html" />
+        <option value="$PROJECT_DIR$/testapp/upload/templates/Account.html" />
+        <option value="$PROJECT_DIR$/testapp/upload/models.py" />
         <option value="$PROJECT_DIR$/testapp/upload/templates/Teacher.html" />
         <option value="$PROJECT_DIR$/testapp/upload/templates/login.html" />
-        <option value="$PROJECT_DIR$/testapp/upload/templates/Account.html" />
-        <option value="$PROJECT_DIR$/testapp/upload/templates/Record.html" />
         <option value="$PROJECT_DIR$/testapp/upload/urls.py" />
-        <option value="$PROJECT_DIR$/testapp/upload/models.py" />
         <option value="$PROJECT_DIR$/testapp/upload/views.py" />
+        <option value="$PROJECT_DIR$/testapp/upload/templates/Record.html" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="932" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="247" />
     <option name="y" value="27" />
-    <option name="width" value="830" />
+    <option name="width" value="1379" />
     <option name="height" value="1053" />
   </component>
   <component name="ProjectView">
@@ -235,20 +236,20 @@
   </component>
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
-    <property name="last_opened_file_path" value="$USER_HOME$/test69/Grand-HTML5/upload/templates/Record.html" />
-    <property name="two.files.diff.last.used.file" value="$USER_HOME$/test69/Grand-HTML5/upload/templates/Record.html" />
+    <property name="last_opened_file_path" value="$USER_HOME$/test69/Grand-HTML5/upload/views.py" />
+    <property name="two.files.diff.last.used.file" value="$USER_HOME$/test69/Grand-HTML5/upload/views.py" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/testapp/app1/templates" />
-      <recent name="$PROJECT_DIR$/testapp/templates" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/testapp/app1/static/css" />
       <recent name="$PROJECT_DIR$/testapp/app1/static/js" />
       <recent name="$PROJECT_DIR$/testapp/app1/static" />
       <recent name="$PROJECT_DIR$/testapp/app1/static/images" />
       <recent name="$PROJECT_DIR$/testapp/upload/static" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/testapp/app1/templates" />
+      <recent name="$PROJECT_DIR$/testapp/templates" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -277,18 +278,19 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="932" y="27" width="830" height="1053" extended-state="0" />
+    <frame x="67" y="25" width="1853" height="1055" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.3077874" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.13591704" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.20024721" side_tool="true" visible="true" weight="0.26002166" />
-      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.20196506" side_tool="true" visible="true" weight="0.2583784" />
       <window_info anchor="bottom" id="Version Control" order="9" />
       <window_info anchor="bottom" id="Python Console" order="7" sideWeight="0.49891067" weight="0.3295063" />
+      <window_info anchor="bottom" id="Run" order="2" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="8" sideWeight="0.7997528" visible="true" weight="0.26002166" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.7980349" visible="true" weight="0.2583784" />
       <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -307,6 +309,13 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/testapp/upload/templates/login.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="450">
+          <caret line="25" column="43" selection-start-line="25" selection-start-column="43" selection-end-line="25" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/testapp/upload/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1350">
@@ -502,13 +511,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/testapp/app1/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1062">
-          <caret line="63" column="17" selection-start-line="63" selection-start-column="17" selection-end-line="63" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/testapp/app1/templates/base.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="126">
@@ -558,13 +560,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/testapp/app1/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" selection-start-line="6" selection-end-line="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/testapp/upload/templates/register.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="54">
@@ -572,61 +567,72 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/testapp/upload/templates/Teacher.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="33" column="34" selection-start-line="33" selection-start-column="34" selection-end-line="33" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/testapp/manage.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/testapp/upload/templates/login.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="347">
-          <caret line="33" column="43" selection-start-line="33" selection-start-column="43" selection-end-line="33" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/testapp/upload/templates/Account.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
+        <state relative-caret-position="648">
           <caret line="36" column="48" selection-start-line="36" selection-start-column="48" selection-end-line="36" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/testapp/upload/templates/Record.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="40" column="101" lean-forward="true" selection-start-line="40" selection-start-column="101" selection-end-line="40" selection-end-column="101" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/testapp/upload/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="17" column="1" lean-forward="true" selection-start-line="17" selection-start-column="1" selection-end-line="17" selection-end-column="1" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/testapp/upload/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="18" column="25" lean-forward="true" selection-start-line="18" selection-start-column="25" selection-end-line="18" selection-end-column="25" />
+        <state relative-caret-position="288">
+          <caret line="18" column="25" selection-start-line="18" selection-start-column="25" selection-end-line="18" selection-end-column="25" />
           <folding>
             <element signature="e#0#28#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/testapp/app1/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" selection-start-line="6" selection-end-line="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/testapp/upload/templates/login.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="476">
+          <caret line="43" column="13" selection-start-line="43" selection-start-column="13" selection-end-line="43" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/testapp/app1/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="28">
+          <caret line="48" column="25" selection-start-line="48" selection-start-column="25" selection-end-line="48" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/testapp/upload/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="17" column="1" selection-start-line="17" selection-start-column="1" selection-end-line="17" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/testapp/upload/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="525">
-          <caret line="209" lean-forward="true" selection-start-line="209" selection-end-line="209" />
+        <state relative-caret-position="483">
+          <caret line="187" column="58" lean-forward="true" selection-start-line="187" selection-start-column="58" selection-end-line="187" selection-end-column="58" />
           <folding>
             <element signature="e#0#35#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/testapp/upload/templates/Teacher.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="42">
+          <caret line="9" selection-start-line="9" selection-end-line="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/testapp/upload/templates/Record.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="8" column="6" lean-forward="true" selection-start-line="8" selection-start-column="6" selection-end-line="8" selection-end-column="6" />
         </state>
       </provider>
     </entry>
